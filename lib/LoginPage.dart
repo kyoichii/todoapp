@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'Onbording.dart';
 import 'Forgotpassword.dart';
 
 class LoginPage extends StatelessWidget {
@@ -83,10 +84,25 @@ class _loginPageState extends State<loginPage> {
                 InkWell(
                   onTap: openForgotPassword,
                   child: Text("Forgot Password?", style: TextStyle(
-
+                    fontSize: 16
                   ),),
                 )
               ],
+            ),
+            Expanded(
+              child: Center(
+                child: Container(
+                  padding: EdgeInsets.symmetric(horizontal: 130, vertical: 20),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(7)),
+                      color: Color(0xfff96060)
+                  ),
+                  child: Text("Log In", style: TextStyle(
+                    fontSize: 18,
+                    color: Colors.white
+                  ),),
+                )
+              ),
             )
           ],
         )
