@@ -110,6 +110,7 @@ class _loginPageState extends State<loginPage> {
     );
   }
 
+  //ForgotPassword.dartへ
   void openForgotPassword(){
     Navigator.push(context, MaterialPageRoute(builder: (context) => Forgotpassword()));
   }
