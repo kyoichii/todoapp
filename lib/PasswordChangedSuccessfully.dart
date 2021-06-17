@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todoapp/HomePage.dart';
 class PasswordChangedSuccessfully extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -42,16 +43,29 @@ class _passwordChangedSuccessfullyState extends State<passwordChangedSuccessfull
           ), textAlign: TextAlign.center,),
           SizedBox(height: 70,),
           Center(
-            child: InkWell(
-              onTap: (){},
-              child: Container(
-
-              ),
-            ),
-          )
+              child: InkWell(
+                onTap: openHomePage,
+                child: Container(
+                  padding: EdgeInsets.symmetric(horizontal: 100, vertical: 20),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(7)),
+                      color: Color(0xfff96060)
+                  ),
+                  child: Text("Continue", style: TextStyle(
+                      fontSize: 18,
+                      color: Colors.white
+                  ),),
+                ),
+              )
+          ),
         ],
       ),
     );
+  }
+
+  //HomePage.dartへ
+  void openHomePage(){
+    Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()));
   }
 }
 
