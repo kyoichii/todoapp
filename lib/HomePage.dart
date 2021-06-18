@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:table_calendar/table_calendar.dart';
+
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -20,6 +22,9 @@ class homePage extends StatefulWidget {
 
 class _homePageState extends State<homePage> {
   String filterType = "today";
+  DateTime today = new DateTime.now();
+  var monthNames = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEPT", "OCT", "NOV", "DEC"];
+  CalendarController ctrlr = new CalendarController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -90,7 +95,38 @@ class _homePageState extends State<homePage> {
                     )
                   ],
                 ),
-              )
+              ),
+              //filterTypeがmonthlyだった場合
+              (filterType == "monthly")?TableCalendar(
+                calendarController: ctrlr,
+                startingDayOfWeek: StartingDayOfWeek.monday,
+                initialCalendarFormat: CalendarFormat.week,
+              ):Container(),
+              Expanded(
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(height: 10,),
+                      Container(
+                        padding: EdgeInsets.all(20),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text("Today ${monthNames[today.month - 1]}, ${today.day}/${today.year}", style: TextStyle(
+                              fontSize: 18,
+                              color: Colors.grey
+                            ),)
+                          ],
+                        ),
+                      ),
+                      //taskWidget(Color(0xfff96060), "Meeting with someone", "9:00 AM"),
+                      //taskWidget(Colors.blue, "Meeting with someone", "9:00 AM"),
+                      //taskWidget(Colors.green, "Take your medicines", "9:00 AM"),
+                    ],
+                  ),
+                ),
+              ),
             ],
           ),
         ],
@@ -100,9 +136,9 @@ class _homePageState extends State<homePage> {
   changeFilter(String filter){
     filterType = filter;
     setState(() {
-
     });
   }
+
 }
 
 
