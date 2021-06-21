@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -120,9 +121,9 @@ class _homePageState extends State<homePage> {
                           ],
                         ),
                       ),
-                      //taskWidget(Color(0xfff96060), "Meeting with someone", "9:00 AM"),
-                      //taskWidget(Colors.blue, "Meeting with someone", "9:00 AM"),
-                      //taskWidget(Colors.green, "Take your medicines", "9:00 AM"),
+                      taskWidget(Color(0xfff96060), "Meeting with someone", "9:00 AM"),
+                      taskWidget(Colors.blue, "Meeting with someone", "9:00 AM"),
+                      taskWidget(Colors.green, "Take your medicines", "9:00 AM"),
                     ],
                   ),
                 ),
@@ -137,6 +138,52 @@ class _homePageState extends State<homePage> {
     filterType = filter;
     setState(() {
     });
+  }
+
+  Slidable taskWidget(Color color, String title, String time) {
+    return Slidable(
+      actionPane: SlidableDrawerActionPane(),
+      actionExtentRatio: 0.3,
+      child: Container(
+        height: 80,
+        margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+        decoration: BoxDecoration(
+            color: Colors.white,
+            boxShadow: [BoxShadow(
+                color: Colors.black.withOpacity(0.03),
+                offset: Offset(0, 9),
+                blurRadius: 20,
+                spreadRadius: 1
+            )]
+        ),
+        child: Row(
+          children: [
+            Container(
+              margin: EdgeInsets.symmetric(horizontal: 20),
+              height: 25,
+              width: 25,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                shape: BoxShape.circle,
+                border: Border.all(color: color,
+                width: 4)
+              ),
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(title, style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 18
+                ),),
+
+              ],
+            )
+          ],
+        ),
+      ),
+    );
   }
 
 }
